@@ -3,15 +3,12 @@
   "productName": "PARTYYY SERVER",
   "version": "0.1.0",
   "description": "",
-  "license": "UNLICENSED",
   "author": "Scott Thiessen (http://movingobjects.io)",
   "homepage": "https://github.com/movingobjects/partyyy-server#readme",
-  "main": "src/entry.js",
-  "scripts": {
-    "start": "node server.js"
-  },
+  "main": "index.js",
   "dependencies": {
-    "uuid": "^3.3.3",
-    "ws": "^7.2.1"
-  }
+    "serverless": "^1.60.4"
+  },
+  "scripts": { },
+  "license": "ISC"
 }
