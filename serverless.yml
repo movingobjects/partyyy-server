@@ -33,6 +33,11 @@ functions:
     events:
       - websocket:
           route: $disconnect
+  websocket-identify:
+    handler: src/lambdas/identify.handler
+    events:
+      - websocket:
+          route: identify
   websocket-message:
     handler: src/lambdas/message.handler
     events:

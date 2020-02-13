@@ -1,13 +1,13 @@
 
 const AWS = require('aws-sdk');
 
-const client = new AWS.DynamoDB.DocumentClient();
+const ddb = new AWS.DynamoDB.DocumentClient();
 
 const Dynamo = {
 
   async get(connectionId, tableName) {
 
-    const data = await client.get({
+    const data = await ddb.get({
       TableName: tableName,
       Key: { connectionId }
     }).promise();
@@ -26,7 +26,7 @@ const Dynamo = {
       throw Error('No connectionId on the data');
     }
 
-    const res = await client.put({
+    const res = await ddb.put({
       TableName: tableName,
       Item: data,
     }).promise();
@@ -41,7 +41,7 @@ const Dynamo = {
 
   async delete(connectionId, tableName) {
 
-    return client.delete({
+    return ddb.delete({
       TableName: tableName,
       Key: { connectionId }
     }).promise();

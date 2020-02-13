@@ -5,6 +5,8 @@ const Socket    = require('../utils/Socket');
 
 const tableName = process.env.tableName;
 
+// serverless deploy function --function websocket-identify
+
 exports.handler = async (e) => {
 
   const {
@@ -22,26 +24,30 @@ exports.handler = async (e) => {
       stage
     } = record;
 
-    switch (body.to) {
+    if (body.group === 'ppl' || body.group === 'projection') {
 
-      case 'projection':
-        break;
+      await Dynamo.write({
+        ...record,
+        group: body.group
+      }, tableName);
 
-      case 'ppl':
-        break;
+      await Socket.send({
+        domainName,
+        stage,
+        connectionId,
+        message: `Identified as '${body.group}'`
+      });
 
-      case 'ppls':
-        break;
+    } else {
 
+      await Socket.send({
+        domainName,
+        stage,
+        connectionId,
+        message: `Invalid group '${body.group}'`
+      });
 
     }
-
-    await Socket.send({
-      domainName,
-      stage,
-      connectionId,
-      message: `Received message: '${body.message}'`
-    })
 
     return Responses._200({ message: 'OK' });
 

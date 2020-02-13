@@ -6,9 +6,7 @@
   "author": "Scott Thiessen (http://movingobjects.io)",
   "homepage": "https://github.com/movingobjects/partyyy-server#readme",
   "main": "index.js",
-  "dependencies": {
-    "serverless": "^1.60.4"
-  },
+  "dependencies": { },
   "scripts": { },
   "license": "ISC"
 }
